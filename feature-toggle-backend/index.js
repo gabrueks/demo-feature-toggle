@@ -16,4 +16,4 @@ app.get('/', (_req, res) => {
     res.status(200);
 })
 
-app.listen(proces.env.PORT || 8080);
+app.listen(process.env.PORT || 8080);
