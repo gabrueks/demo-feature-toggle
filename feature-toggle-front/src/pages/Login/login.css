@@ -1,0 +1,18 @@
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    background-color: white;
+    width: 80vw;
+    border-radius: 5%;
+}
+
+.info-container {
+    width: 250px;
+    height: 70vh;
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+}
