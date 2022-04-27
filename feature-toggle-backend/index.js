@@ -13,7 +13,7 @@ app.use(verifyRouter);
 app.use(messageRouter);
 
 app.get('/', (_req, res) => {
-    res.status(200);
+    res.status(200).json({ health: 'ok' });
 })
 
 app.listen(process.env.PORT || 8080);
