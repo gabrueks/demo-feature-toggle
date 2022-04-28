@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ import './login.css';
 function Login() {
     const navigate = useNavigate();
 
+    const jwt = useSelector(state => state.user.jwt);
     const phone = useSelector(state => state.user.phone);
     const name = useSelector(state => state.user.name);
 
@@ -42,6 +43,12 @@ function Login() {
         })
         .catch((err) => { setErr(err.message) })
     }
+
+    useEffect(() => {
+      if (jwt !== '') {
+        navigate('/message');
+      }
+    }, [jwt, navigate]);
 
     return (
       <div className="login-container">

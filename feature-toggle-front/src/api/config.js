@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const API_URL = 'https://feature-toggle-backend.herokuapp.com';
+export const API_URL = 'http://localhost:8080';
 
 const apiInstance = axios.create({ baseURL: API_URL, timeout: 30000 });
 
