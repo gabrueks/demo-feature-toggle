@@ -15,6 +15,8 @@ function Message({ flags }) {
     const [messageSuccessMessage, setMessageSuccessMessage] = useState('');
     const [certificateErr, setCertificateErr] = useState(null);
     const [messageErr, setMessageErr] = useState(null);
+    const [certificateLoadingMessage, setcertificateLoadingMessage] = useState(null);
+    const [messageLoadingMessage, setMessageLoadingMessage] = useState(null);
 
     const navigate = useNavigate();
     const jwt = useSelector(state => state.user.jwt);
@@ -26,25 +28,35 @@ function Message({ flags }) {
     }, [navigate, jwt]);
 
     const handleSendMessage = () => {
+        setMessageLoadingMessage('Sending message...');
         sendMessage(jwt)
             .then(() => {
-                setMessageSuccessMessage('Mensagem enviada com sucesso!');
+                setMessageLoadingMessage(null);
+                setMessageSuccessMessage('Message sent!');
                 setTimeout(() => {
                     setMessageSuccessMessage('');
                 }, 3000)
             })
-            .catch((error) => { setMessageErr(error.message || true) })
+            .catch((error) => {
+                setMessageLoadingMessage(null);
+                setMessageErr(error.message || true);
+            })
     }
 
     const handleSendCertificate = () => {
+        setcertificateLoadingMessage('Sending certificate...');
         sendCertificate(jwt)
             .then(() => {
-                setCertificateSuccessMessage('Certificado enviado com sucesso!');
+                setcertificateLoadingMessage(null);
+                setCertificateSuccessMessage('Certificate sent!');
                 setTimeout(() => {
                     setCertificateSuccessMessage('');
                 }, 3000)
             })
-            .catch((error) => { setCertificateErr(error.message || true) })
+            .catch((error) => {
+                setcertificateLoadingMessage(null);
+                setCertificateErr(error.message || true)
+            })
     }
 
     return (
@@ -53,16 +65,18 @@ function Message({ flags }) {
                 {getCertificateDemo && (
                     <div className="certificate-container">
                         <VerifiedUserIcon />
-                        <Button onClick={handleSendCertificate} variant="outlined" type="submit">Receber certificado</Button>
-                        {certificateErr && <span>{certificateErr || "Algo deu errrado com o certificado."}</span>}
+                        <Button onClick={handleSendCertificate} variant="outlined" type="submit">Receive certificate</Button>
+                        {certificateLoadingMessage && <span>{certificateLoadingMessage}</span>}
+                        {certificateErr && <span>{certificateErr || "Something went wrong."}</span>}
                         {certificateSuccessMessage && <span>{certificateErr}</span>}
                     </div>
                 )}
                 {sendMessageDemo && (
                     <div className="message-container">
                         <SendIcon />
-                        <Button onClick={handleSendMessage} variant="outlined" type="submit">Enviar mensagem</Button>
-                        {messageErr && <span>{messageErr || "Algo deu errrado com a mensagem."}</span>}
+                        <Button onClick={handleSendMessage} variant="outlined" type="submit">Receive message</Button>
+                        {messageLoadingMessage && <span>{messageLoadingMessage}</span>}
+                        {messageErr && <span>{messageErr || "Something went wrong."}</span>}
                         {messageSuccessMessage && <span>{messageSuccessMessage}</span>}
                     </div>
                 )}

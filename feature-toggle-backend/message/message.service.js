@@ -2,7 +2,7 @@ import twilioClient from '../utils/twilioClient.js';
 
 const receivedCertificate = [];
 
-const messageBody = 'Essa é uma mensagem enviada pela demo de feature toggle =). Espero que esteja se divertindo';
+const messageBody = "This is an automatic message from feature toggle demo. Hope you're having fun =)";
 const certificateMediaURL = (name) => `https://certificado-5264.twil.io/pdf?completo=true&nome=${name}&evangelist=Gabriel%20Bolzi&palestra=Twilio%20Feature%20Toggle&duracao=45%20minutos&evento=CityJS&imagem=/certificado.png`;
 
 export const sendMessage = (to) => {
