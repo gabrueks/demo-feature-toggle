@@ -22,6 +22,6 @@ export const sendCertificate = async (jwt) => {
             }
         });
     } catch (_err) {
-        throw new Error('Erro ao enviar certificado, lembrando que você só pode pegar um certificado.');
+        throw new Error('Failed to send certificate, you can have only one certificate');
     }
 }
