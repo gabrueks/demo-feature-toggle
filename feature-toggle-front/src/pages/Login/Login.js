@@ -53,7 +53,7 @@ function Login() {
     return (
       <div className="login-container">
         <div className="info-container">
-          <Typography color="#2a9d8f" variant="h5" align="center">Olá, seja bem vindo a demonstração de feature toggle</Typography>
+          <Typography color="#2a9d8f" variant="h5" align="center">Olá, seja bem vindo a demonstração de verify e notification!</Typography>
           {isCodeSent ? <CodeInput submitEvent={handleCodeSubmit} err={err} /> : <PhoneInput submitEvent={handlePhoneSubmit} err={err} />}
         </div>
       </div>

@@ -9,8 +9,7 @@ import { sendMessage, sendCertificate } from '../../api/message';
 
 import './message.css';
 
-function Message({ flags }) {
-    const { sendMessageDemo, getCertificateDemo } = flags;
+function Message() {
     const [certificateSuccessMessage, setCertificateSuccessMessage] = useState('');
     const [messageSuccessMessage, setMessageSuccessMessage] = useState('');
     const [certificateErr, setCertificateErr] = useState(null);
@@ -62,24 +61,20 @@ function Message({ flags }) {
     return (
         <div className="login-container">
             <div className="messages-container">
-                {getCertificateDemo && (
-                    <div className="certificate-container">
-                        <VerifiedUserIcon />
-                        <Button onClick={handleSendCertificate} variant="outlined" type="submit">Receive certificate</Button>
-                        {certificateLoadingMessage && <span>{certificateLoadingMessage}</span>}
-                        {certificateErr && <span>{certificateErr || "Something went wrong."}</span>}
-                        {certificateSuccessMessage && <span>{certificateErr}</span>}
-                    </div>
-                )}
-                {sendMessageDemo && (
-                    <div className="message-container">
-                        <SendIcon />
-                        <Button onClick={handleSendMessage} variant="outlined" type="submit">Receive message</Button>
-                        {messageLoadingMessage && <span>{messageLoadingMessage}</span>}
-                        {messageErr && <span>{messageErr || "Something went wrong."}</span>}
-                        {messageSuccessMessage && <span>{messageSuccessMessage}</span>}
-                    </div>
-                )}
+                <div className="certificate-container">
+                    <VerifiedUserIcon />
+                    <Button onClick={handleSendCertificate} variant="outlined" type="submit">Receive certificate</Button>
+                    {certificateLoadingMessage && <span>{certificateLoadingMessage}</span>}
+                    {certificateErr && <span>{certificateErr || "Something went wrong."}</span>}
+                    {certificateSuccessMessage && <span>{certificateErr}</span>}
+                </div>
+                <div className="message-container">
+                    <SendIcon />
+                    <Button onClick={handleSendMessage} variant="outlined" type="submit">Receive message</Button>
+                    {messageLoadingMessage && <span>{messageLoadingMessage}</span>}
+                    {messageErr && <span>{messageErr || "Something went wrong."}</span>}
+                    {messageSuccessMessage && <span>{messageSuccessMessage}</span>}
+                </div>
             </div>
         </div>
     )
